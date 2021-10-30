@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\CommandBinding\obj\Debug\
+C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\WPF\CommandBinding\UnUseCommandBinding\obj\Debug\
 CommandBinding
 none
 false
 DEBUG;TRACE
-C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\CommandBinding\App.xaml
+C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\WPF\CommandBinding\UnUseCommandBinding\App.xaml
 2-678310711
 
 11-1137358549
-191444389403
+191969672490
 MainWindow\MainWindow.xaml;TaskListView\TaskListView.xaml;
 
-False
+True
 

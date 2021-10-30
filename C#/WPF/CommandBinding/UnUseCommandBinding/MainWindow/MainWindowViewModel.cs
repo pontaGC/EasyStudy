@@ -15,7 +15,7 @@ namespace CommandBinding
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="TaskList"/>.
+        /// Gets or sets the <see cref="TaskListViewModel"/>.
         /// </summary>
         public TaskListViewModel TaskList
         {
