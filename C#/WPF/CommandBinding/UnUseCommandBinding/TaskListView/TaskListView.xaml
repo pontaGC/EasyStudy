@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="CommandBinding.TaskListView"
+             x:ClassModifier="internal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:this="clr-namespace:CommandBinding"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="500"
+             d:DataContext="{d:DesignInstance this:TaskListViewModel, IsDesignTimeCreatable=False}">
+
+    <ListView ItemsSource="{Binding Items}"
+              SelectedItem="{Binding SelectedItem}">
+        <ListView.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="コピー(_C)" Command="{Binding CopyCommand}" />
+                <MenuItem Header="貼り付け(_P)" Command="{Binding PasteCommand}" />
+            </ContextMenu>
+        </ListView.ContextMenu>
+        <ListView.View>
+            <GridView>
+                <GridViewColumn Header="No." DisplayMemberBinding="{Binding Number}" Width="30" />
+                <GridViewColumn Header="重要度" DisplayMemberBinding="{Binding Severity}"  Width="50" />
+                <GridViewColumn Header="タスク名" DisplayMemberBinding="{Binding TaskName}" Width="200" />
+            </GridView>
+        </ListView.View>
+    </ListView>
+</UserControl>
