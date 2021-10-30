@@ -19,9 +19,34 @@
         </ListView.ContextMenu>
         <ListView.View>
             <GridView>
-                <GridViewColumn Header="No." DisplayMemberBinding="{Binding Number}" Width="30" />
-                <GridViewColumn Header="重要度" DisplayMemberBinding="{Binding Severity}"  Width="50" />
-                <GridViewColumn Header="タスク名" DisplayMemberBinding="{Binding TaskName}" Width="200" />
+                
+                <!--Task number-->
+                <GridViewColumn Header="No." Width="30">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Number}" BorderThickness="0" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                
+                <!--Severity-->
+                <GridViewColumn Header="重要度" Width="50">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding SelectableSeverities}"
+                                      SelectedItem="{Binding Severity}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                
+                <!--Task name-->
+                <GridViewColumn Header="タスク名" Width="200">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding TaskName}" BorderThickness="0" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
             </GridView>
         </ListView.View>
     </ListView>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 using Prism.Commands;
@@ -9,20 +8,12 @@ namespace CommandBinding
 {
     internal sealed class TaskListViewModel : BindableBase
     {
-        private int pastedCount;
         private TaskListItem copiedItem;
         private TaskListItem selectedItem;
         private DelegateCommand copyCommand;
         private DelegateCommand pasteCommand;
 
-        /// <summary>
-        /// Occurs when a selected <see cref='TaskListItem'/> is changed.
-        /// </summary>
-        public event EventHandler<TaskListItem> SelectedItemChanged;
-
-        //
-        // Properties
-        //
+        #region Properties
 
         /// <summary>
         /// Gets or sets a current selected item.
@@ -37,8 +28,6 @@ namespace CommandBinding
                 {
                     this.copyCommand.RaiseCanExecuteChanged();
                     this.pasteCommand.RaiseCanExecuteChanged();
-
-                    this.SelectedItemChanged?.Invoke(this, value);
                 }
             }
         }
@@ -80,9 +69,9 @@ namespace CommandBinding
         /// </summary>
         public ObservableCollection<TaskListItem> Items { get; } = new ObservableCollection<TaskListItem>();
 
-        //
-        // Methods
-        //
+        #endregion
+
+        #region Methods
 
         private bool CanCopy()
         {
@@ -106,12 +95,13 @@ namespace CommandBinding
             {
                 Number = this.copiedItem.Number,
                 Severity = this.copiedItem.Severity,
-                TaskName = $"{this.copiedItem.TaskName}_Copy{++this.pastedCount}",
+                TaskName = $"{this.copiedItem.TaskName}_Copy",
             };
 
             // Inserts copied item to the next row of the selected item
             this.Items.Insert((this.Items.IndexOf(this.SelectedItem) + 1), pastingItem);
         }
 
+        #endregion
     }
 }

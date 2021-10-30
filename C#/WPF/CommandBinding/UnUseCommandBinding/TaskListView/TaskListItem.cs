@@ -1,4 +1,7 @@
-﻿using Prism.Mvvm;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using Prism.Mvvm;
 
 namespace CommandBinding
 {
@@ -7,6 +10,20 @@ namespace CommandBinding
         private int number;
         private string taskName;
         private Severity severity;
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskListItem"/> class.
+        /// </summary>
+        public TaskListItem()
+        {
+            this.SelectableSeverities.AddRange(Enum.GetValues(typeof(Severity)).OfType<Severity>());
+        }
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// Gets or sets a number;
@@ -18,7 +35,7 @@ namespace CommandBinding
         }
 
         /// <summary>
-        /// Gets or sets name of a task.
+        /// Gets or sets the name of a task.
         /// </summary>
         public string TaskName
         {
@@ -34,5 +51,12 @@ namespace CommandBinding
             get => this.severity;
             set => this.SetProperty(ref this.severity, value);
         }
+
+        /// <summary>
+        /// Gets the selectable severities.
+        /// </summary>
+        public ObservableCollection<Severity> SelectableSeverities { get; } = new ObservableCollection<Severity>();
+
+        #endregion
     }
 }
