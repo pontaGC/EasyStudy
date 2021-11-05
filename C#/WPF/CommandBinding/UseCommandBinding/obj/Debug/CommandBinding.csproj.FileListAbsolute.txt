@@ -1,0 +1,7 @@
+C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\WPF\CommandBinding\UseCommandBinding\obj\Debug\CommandBinding.csproj.AssemblyReference.cache
+C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\WPF\CommandBinding\UseCommandBinding\obj\Debug\MainWindow\MainWindow.g.cs
+C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\WPF\CommandBinding\UseCommandBinding\obj\Debug\TaskListView\TaskListView.g.cs
+C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\WPF\CommandBinding\UseCommandBinding\obj\Debug\App.g.cs
+C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\WPF\CommandBinding\UseCommandBinding\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\WPF\CommandBinding\UseCommandBinding\obj\Debug\CommandBindingStudy_MarkupCompile.cache
+C:\Users\S. Makihira\Desktop\PontaGCgit\pontaGC\Study\C#\WPF\CommandBinding\UseCommandBinding\obj\Debug\CommandBindingStudy_MarkupCompile.lref

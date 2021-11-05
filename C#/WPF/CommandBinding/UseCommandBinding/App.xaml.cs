@@ -1,17 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
-namespace CommandBinding
+namespace CommandBindingStudy
 {
     /// <summary>
-    /// App.xaml の相互作用ロジック
+    /// Interaction logic for <see cref="App"/>.xaml.
     /// </summary>
-    public partial class App : Application
+    public sealed partial class App
     {
+        /// <summary>
+        /// Invokes starting up this application.
+        /// </summary>
+        /// <param name="e">The event args.</param>
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var mainWindow = new MainWindow()
+            {
+                DataContext = new MainWindowViewModel(),
+            };
+
+            mainWindow.ShowDialog();
+        }
     }
 }
