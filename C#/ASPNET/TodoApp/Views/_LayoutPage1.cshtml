@@ -9,6 +9,14 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
+    @*ログアウトのリンクを追加*@
+    <div class="container">
+        @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("ログアウト", "SignOut", new { Controller = "Login" })
+            }
+    </div>
+
     <div class="container">
         @RenderBody()
     </div>

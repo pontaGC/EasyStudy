@@ -10,6 +10,7 @@ using TodoApp.Models;
 
 namespace TodoApp.Controllers
 {
+    [Authorize] // 認証済みの状態でのみアクセス可
     public class ToDoItemsController : Controller
     {
         private ToDoItemContext db = new ToDoItemContext();
