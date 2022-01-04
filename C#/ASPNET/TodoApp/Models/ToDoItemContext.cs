@@ -12,5 +12,9 @@ namespace TodoApp.Models
     public class ToDoItemContext : DbContext
     {
         public DbSet<ToDoItem> TodoItems { get; set; }
+
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
     }
 }
