@@ -107,17 +107,11 @@ namespace TodoApp.Models
 
         public override bool ValidateUser(string username, string password)
         {
-            if (username == "administrator" && password == "password")
+            using(var db = new ToDoItemContext())
             {
-                return true;
+                var user = db.Users.FirstOrDefault(u => u.UserName == username && u.Password == password);
+                return user != null;
             }
-
-            if (username == "username" && password == "password")
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }
