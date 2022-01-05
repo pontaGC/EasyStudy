@@ -27,5 +27,9 @@ namespace TodoApp.Models
         // Navigation Propertyには，virtual修飾子をつけること
         // Navigation Propertyは他のクラスと関連するプロパティ
         public virtual ICollection<Role> Roles { get; set; }
+
+        [NotMapped] // DBに保持する必要がない場合は "NotMapped"を指定する
+        [DisplayName("ロール")]
+        public List<int> RoleIds { get; set; }
     }
 }
