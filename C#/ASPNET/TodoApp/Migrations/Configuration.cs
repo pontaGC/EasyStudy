@@ -33,14 +33,6 @@
                 Roles = new List<Role>(),
             };
 
-            var ponta = new User()
-            {
-                Id = 2,
-                UserName = "ponta",
-                Password = "password",
-                Roles = new List<Role>(),
-            };
-
             var administrators = new Role()
             {
                 Id = 1,
@@ -55,13 +47,13 @@
                 Users = new List<User>(),
             };
 
+            var membershipProvider = new CustomMembershipProvider();
+            admin.Password = membershipProvider.GeneratePasswordHash(admin.UserName, admin.Password);
+
             admin.Roles.Add(administrators);
             administrators.Users.Add(admin);
 
-            ponta.Roles.Add(users);
-            users.Users.Add(ponta);
-
-            context.Users.AddOrUpdate(user => user.Id, new User[] { admin, ponta });
+            context.Users.AddOrUpdate(user => user.Id, new User[] { admin });
             context.Roles.AddOrUpdate(role => role.Id, new Role[] { administrators, users });
         }
     }
