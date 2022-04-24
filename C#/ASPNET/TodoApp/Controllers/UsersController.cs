@@ -109,7 +109,9 @@ namespace TodoApp.Controllers
                     dbUser.Password = this.membershipProvider.GeneratePasswordHash(user.UserName, user.Password);
                 }
 
-                dbUser.UserName = user.UserName;
+                // ユーザー名のみを変更すると、ハッシュ値の都合でログインできなくなる
+                //dbUser.UserName = user.UserName;
+
                 dbUser.Roles.Clear();
                 foreach(var role in roles)
                 {
