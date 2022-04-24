@@ -1,0 +1,22 @@
+﻿################################################################################
+# この .gitignore ファイルは Microsoft(R) Visual Studio によって自動的に作成されました。
+################################################################################
+
+/C#/HelloWorld/obj/Release
+
+#
+# ASP.NET
+#
+
+# TodoApp
+/C#/ASPNET/TodoApp/.vs/TodoApp/v16
+/C#/ASPNET/TodoApp/bin
+/C#/ASPNET/TodoApp/obj
+/C#/ASPNET/TodoApp/obj/Debug
+
+#
+# WPF
+#
+
+# CommandBinding
+/C#/WPF/CommandBinding/UseCommandBinding/obj/Debug
