@@ -18,7 +18,13 @@ namespace TodoApp.Controllers
         // GET: ToDoItems
         public ActionResult Index()
         {
-            return View(db.TodoItems.ToList());
+            var user = this.GetLoginUser();
+            if (user == null)
+            {
+                return View(new List<ToDoItem>());
+            }
+
+            return View(user.TodoItems);
         }
 
         // GET: ToDoItems/Details/5
@@ -51,9 +57,15 @@ namespace TodoApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TodoItems.Add(toDoItem);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var loginUser = this.GetLoginUser();
+                if (loginUser != null)
+                {
+                    toDoItem.User = loginUser;
+
+                    db.TodoItems.Add(toDoItem);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(toDoItem);
@@ -123,6 +135,12 @@ namespace TodoApp.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private User GetLoginUser()
+        {
+            // Identifyに現在ログイン中のデータが入る
+            return db.Users.FirstOrDefault(item => item.UserName == User.Identity.Name);
         }
     }
 }

@@ -31,5 +31,7 @@ namespace TodoApp.Models
         [NotMapped] // DBに保持する必要がない場合は "NotMapped"を指定する
         [DisplayName("ロール")]
         public List<int> RoleIds { get; set; }
+
+        public virtual ICollection<ToDoItem> TodoItems { get; set; }
     }
 }
