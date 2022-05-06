@@ -18,8 +18,16 @@ namespace SampleMVCApp.Controllers
             _logger = logger;
         }
 
+        #region Actions
+
+        // アクションはあらかじめ設定されたアドレスにクライアントがアクセスしたときに呼び出されるメソッド
+
         public IActionResult Index()
         {
+            // Indexと紐づいたテンプレートファイル（cshtmlファイル）を返す
+
+            // Viewメソッドでは、「コントローラ名」と「アクション名」をもとに、
+            // 自動的に「どのテンプレートファイルを利用するか」を判断する
             return View();
         }
 
@@ -28,10 +36,12 @@ namespace SampleMVCApp.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)] // リスポンスをキャッシュする
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        #endregion
     }
 }
