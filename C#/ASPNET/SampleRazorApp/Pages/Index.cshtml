@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{Id?}"
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -7,4 +7,35 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p class="h4">@Model.Message</p>
+    <form asp-page="Index">
+        @*氏名*@
+        <div class="form-group">
+            <label asp-for="@Model.Name">Name</label>
+            <input asp-for="@Model.Name" class="form-control" />
+        </div>
+
+        @*パスワード*@
+        <div class="form-group">
+            <label asp-for="@Model.Password">Password</label>
+            <input asp-for="@Model.Password" class="form-control" />
+        </div>
+
+        @*メールアドレス*@
+        <div class="form-group">
+            <label asp-for="@Model.Mail">Mail</label>
+            <input asp-for="@Model.Mail" class="form-control" />
+        </div>
+
+        @*電話番号*@
+        <div class="form-group">
+            <label asp-for="@Model.Tel">Tel</label>
+            <input asp-for="@Model.Tel" class="form-control" />
+        </div>
+
+        @*送信*@
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
