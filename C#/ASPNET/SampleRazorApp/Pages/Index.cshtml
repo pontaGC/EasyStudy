@@ -11,26 +11,43 @@
     <form asp-page="Index">
         @*氏名*@
         <div class="form-group">
-            <label asp-for="@Model.Name">Name</label>
-            <input asp-for="@Model.Name" class="form-control" />
+            @*<label asp-for="@Model.Name">Name</label>
+            <input asp-for="@Model.Name" class="form-control" />*@
+
+            @*HTMLヘルパー版*@
+            @Html.DisplayName("Name")
+            @Html.Editor(nameof(Model.Name), new { htmlAttributes = new { @class = "form-control" } })
         </div>
 
         @*パスワード*@
         <div class="form-group">
-            <label asp-for="@Model.Password">Password</label>
-            <input asp-for="@Model.Password" class="form-control" />
+           @*<label asp-for="@Model.Password">Password</label>
+             <input asp-for="@Model.Password" class="form-control" />*@
+
+           @*HTMLヘルパー版*@
+           @Html.DisplayNameFor(model => model.Password)
+           @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
         </div>
 
         @*メールアドレス*@
         <div class="form-group">
-            <label asp-for="@Model.Mail">Mail</label>
-            <input asp-for="@Model.Mail" class="form-control" />
+            @*<label asp-for="@Model.Mail">Mail</label>
+              <input asp-for="@Model.Mail" class="form-control" />*@
+
+            @*HtmlTextBoxは<input />のうち、type="text"のもの*@
+
+            @*HTMLヘルパー版*@
+            @Html.DisplayName("Mail")
+            @Html.TextBox(nameof(Model.Mail), Model.Mail, new { @class = "form-control" } )
         </div>
 
         @*電話番号*@
         <div class="form-group">
-            <label asp-for="@Model.Tel">Tel</label>
-            <input asp-for="@Model.Tel" class="form-control" />
+            @*<label asp-for="@Model.Tel">Tel</label>
+              <input asp-for="@Model.Tel" class="form-control" />*@
+
+            @Html.DisplayName("Tel")
+            @Html.TextBoxFor(model => model.Tel, new { @class = "form-control" } )
         </div>
 
         @*送信*@
