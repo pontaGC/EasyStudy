@@ -27,6 +27,7 @@ namespace SampleMVCApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(); // セッション(クライアントとホスト間の接続を維持する仕組み）を利用する
             services.AddControllersWithViews();
         }
 
@@ -61,6 +62,9 @@ namespace SampleMVCApp
 
             // 認証機能の追加
             app.UseAuthorization();
+
+            // セッションを利用
+            app.UseSession();
 
             // パイプラインの"最後に呼び出される"エンドポイントの設定
             app.UseEndpoints(endpoints =>
