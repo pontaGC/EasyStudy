@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+ï»¿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using SampleMVCApp.Data;
 
 namespace SampleMVCApp
 {
@@ -20,15 +22,18 @@ namespace SampleMVCApp
         }
 
         /// <summary>
-        /// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ìİ’èî•ñ
+        /// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šæƒ…å ±
         /// </summary>
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSession(); // ƒZƒbƒVƒ‡ƒ“(ƒNƒ‰ƒCƒAƒ“ƒg‚ÆƒzƒXƒgŠÔ‚ÌÚ‘±‚ğˆÛ‚·‚éd‘g‚İj‚ğ—˜—p‚·‚é
+            services.AddSession(); // ã‚»ãƒƒã‚·ãƒ§ãƒ³(ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã¨ãƒ›ã‚¹ãƒˆé–“ã®æ¥ç¶šã‚’ç¶­æŒã™ã‚‹ä»•çµ„ã¿ï¼‰ã‚’åˆ©ç”¨ã™ã‚‹
             services.AddControllersWithViews();
+
+            services.AddDbContext<SampleMVCAppContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SampleMVCAppContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,47 +41,47 @@ namespace SampleMVCApp
         {
             if (env.IsDevelopment())
             {
-                // ŠJ”­ƒ‚[ƒh‚Ì—áŠOƒy[ƒWİ’è
+                // é–‹ç™ºãƒ¢ãƒ¼ãƒ‰æ™‚ã®ä¾‹å¤–ãƒšãƒ¼ã‚¸è¨­å®š
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                // ƒŠƒŠ[ƒXƒ‚[ƒh‚Ì—áŠOƒy[ƒWİ’è
-                app.UseExceptionHandler("/Home/Error"); // "/Home/Error/"‚ğƒGƒ‰[ƒy[ƒW‚Æ‚µ‚Äƒnƒ“ƒhƒ‹
+                // ãƒªãƒªãƒ¼ã‚¹ãƒ¢ãƒ¼ãƒ‰æ™‚ã®ä¾‹å¤–ãƒšãƒ¼ã‚¸è¨­å®š
+                app.UseExceptionHandler("/Home/Error"); // "/Home/Error/"ã‚’ã‚¨ãƒ©ãƒ¼ãƒšãƒ¼ã‚¸ã¨ã—ã¦ãƒãƒ³ãƒ‰ãƒ«
 
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                // STS(Strict Transport Security)g—p‚Ì‚½‚ß‚Ìƒ~ƒhƒ‹ƒEƒFƒA‚ğ’Ç‰Á => Webƒuƒ‰ƒEƒU‚ÖHTTPS’ÊM‚ğs‚¤‚æ‚¤‚Éw¦
-                // HTML“I‚Èˆ—‚Æ‚µ‚Ä‚ÍAStrict-Transport-Securityƒwƒbƒ_‚ğ’Ç‰Á‚µ‚Ä‚¢‚é
+                // STS(Strict Transport Security)ä½¿ç”¨ã®ãŸã‚ã®ãƒŸãƒ‰ãƒ«ã‚¦ã‚§ã‚¢ã‚’è¿½åŠ  => Webãƒ–ãƒ©ã‚¦ã‚¶ã¸HTTPSé€šä¿¡ã‚’è¡Œã†ã‚ˆã†ã«æŒ‡ç¤º
+                // HTMLçš„ãªå‡¦ç†ã¨ã—ã¦ã¯ã€Strict-Transport-Securityãƒ˜ãƒƒãƒ€ã‚’è¿½åŠ ã—ã¦ã„ã‚‹
                 app.UseHsts(); 
             }
 
-            // HTTP‚ğHTTPS‚ÉƒŠƒ_ƒCƒŒƒNƒg‚·‚é
+            // HTTPã‚’HTTPSã«ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã™ã‚‹
             app.UseHttpsRedirection();
 
-            //  Ã“Iƒtƒ@ƒCƒ‹‚Ì—˜—p‚ğ‰Â”\‚É‚·‚é
+            //  é™çš„ãƒ•ã‚¡ã‚¤ãƒ«ã®åˆ©ç”¨ã‚’å¯èƒ½ã«ã™ã‚‹
             app.UseStaticFiles();
 
-            // uƒ‹[ƒeƒBƒ“ƒO‹@”\v‚ğON‚É‚·‚é
-            // ƒ‹[ƒeƒBƒ“ƒO‹@”\: “Á’è‚ÌƒAƒhƒŒƒX‚ÉƒAƒNƒZƒXA“Á’è‚Ìˆ—‚ğİ’è‚Å‚«‚é‹@”\ (ƒlƒbƒgƒ[ƒN‚Ìƒ‹[ƒeƒBƒ“ƒO‚Æ‚Íˆá‚¤ˆÓ–¡j
+            // ã€Œãƒ«ãƒ¼ãƒ†ã‚£ãƒ³ã‚°æ©Ÿèƒ½ã€ã‚’ONã«ã™ã‚‹
+            // ãƒ«ãƒ¼ãƒ†ã‚£ãƒ³ã‚°æ©Ÿèƒ½: ç‰¹å®šã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã«ã‚¢ã‚¯ã‚»ã‚¹æ™‚ã€ç‰¹å®šã®å‡¦ç†ã‚’è¨­å®šã§ãã‚‹æ©Ÿèƒ½ (ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã®ãƒ«ãƒ¼ãƒ†ã‚£ãƒ³ã‚°ã¨ã¯é•ã†æ„å‘³ï¼‰
             app.UseRouting();
 
-            // ”FØ‹@”\‚Ì’Ç‰Á
+            // èªè¨¼æ©Ÿèƒ½ã®è¿½åŠ 
             app.UseAuthorization();
 
-            // ƒZƒbƒVƒ‡ƒ“‚ğ—˜—p
+            // ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’åˆ©ç”¨
             app.UseSession();
 
-            // ƒpƒCƒvƒ‰ƒCƒ“‚Ì"ÅŒã‚ÉŒÄ‚Ño‚³‚ê‚é"ƒGƒ“ƒhƒ|ƒCƒ“ƒg‚Ìİ’è
+            // ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³ã®"æœ€å¾Œã«å‘¼ã³å‡ºã•ã‚Œã‚‹"ã‚¨ãƒ³ãƒ‰ãƒã‚¤ãƒ³ãƒˆã®è¨­å®š
             app.UseEndpoints(endpoints =>
             {
-                // MVCƒRƒ“ƒgƒ[ƒ‰‚ğ—˜—p‚µ‚½ƒ‹[ƒg‚Ìİ’è (MVC‚ÅÀ‘•‚·‚é‚È‚çMUST‚Èİ’èj
-                // name: ƒ‹[ƒg‚Ì–¼‘O
-                // pattern‚ªƒeƒ“ƒvƒŒ[ƒg
-                // - {controller=Home}: ƒRƒ“ƒgƒ[ƒ‰–¼B"Home"‚ÍƒfƒtƒHƒ‹ƒg’l
-                // - {action=iIndex}: ƒAƒNƒVƒ‡ƒ“–¼B"Index"‚ÍƒfƒtƒHƒ‹ƒg’l
-                // - {id?}: ID’lBã‹L2‚Â‚ÆˆÙ‚È‚èAÈ—ª‰Â”\
+                // MVCã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’åˆ©ç”¨ã—ãŸãƒ«ãƒ¼ãƒˆã®è¨­å®š (MVCã§å®Ÿè£…ã™ã‚‹ãªã‚‰MUSTãªè¨­å®šï¼‰
+                // name: ãƒ«ãƒ¼ãƒˆã®åå‰
+                // patternãŒãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
+                // - {controller=Home}: ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©åã€‚"Home"ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
+                // - {action=iIndex}: ã‚¢ã‚¯ã‚·ãƒ§ãƒ³åã€‚"Index"ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
+                // - {id?}: IDå€¤ã€‚ä¸Šè¨˜2ã¤ã¨ç•°ãªã‚Šã€çœç•¥å¯èƒ½
                 //
-                // —á) u/abc/xyz/123v‚ÆƒAƒNƒZƒX‚³‚ê‚½ê‡‚ÍAuabcƒRƒ“ƒgƒ[ƒ‰‚ÌxyzƒAƒNƒVƒ‡ƒ“‚É123‚Æ‚¢‚¤ID‚ğ•t‚¯‚ÄŒÄ‚Ño‚·v‚Æ‚¢‚¤‚±‚Æ
+                // ä¾‹) ã€Œ/abc/xyz/123ã€ã¨ã‚¢ã‚¯ã‚»ã‚¹ã•ã‚ŒãŸå ´åˆã¯ã€ã€Œabcã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®xyzã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã«123ã¨ã„ã†IDã‚’ä»˜ã‘ã¦å‘¼ã³å‡ºã™ã€ã¨ã„ã†ã“ã¨
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -84,7 +89,7 @@ namespace SampleMVCApp
 
             app.UseEndpoints(endpoint =>
             {
-                // ‘æˆêˆø”‚ÌƒpƒX‚ÉƒAƒNƒZƒX‚·‚é‚ÆA‘æ2ˆø”‚Ìˆ—‚ğÀs‚·‚é
+                // ç¬¬ä¸€å¼•æ•°ã®ãƒ‘ã‚¹ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã¨ã€ç¬¬2å¼•æ•°ã®å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
                 endpoint.MapGet("/",
                                 async context => await context.Response.WriteAsync("Hello world"));
             });

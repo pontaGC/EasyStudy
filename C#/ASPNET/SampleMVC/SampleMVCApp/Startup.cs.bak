@@ -1,0 +1,98 @@
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using SampleMVCApp.Data;
+
+namespace SampleMVCApp
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        /// <summary>
+        /// アプリケーションの設定
+        /// </summary>
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSession(); // �Z�b�V����(�N���C�A���g�ƃz�X�g�Ԃ̐ڑ����ێ�����d�g�݁j�𗘗p����
+            services.AddControllersWithViews();
+
+            services.AddDbContext<SampleMVCAppContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SampleMVCAppContext")));
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                // �J�����[�h���̗�O�y�[�W�ݒ�
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                // �����[�X���[�h���̗�O�y�[�W�ݒ�
+                app.UseExceptionHandler("/Home/Error"); // "/Home/Error/"���G���[�y�[�W�Ƃ��ăn���h��
+
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // STS(Strict Transport Security)�g�p�̂��߂̃~�h���E�F�A��ǉ� => Web�u���E�U��HTTPS�ʐM���s���悤�Ɏw��
+                // HTML�I�ȏ����Ƃ��ẮAStrict-Transport-Security�w�b�_��ǉ����Ă���
+                app.UseHsts(); 
+            }
+
+            // HTTP��HTTPS�Ƀ��_�C���N�g����
+            app.UseHttpsRedirection();
+
+            //  �ÓI�t�@�C���̗��p���\�ɂ���
+            app.UseStaticFiles();
+
+            // �u���[�e�B���O�@�\�v��ON�ɂ���
+            // ���[�e�B���O�@�\: ����̃A�h���X�ɃA�N�Z�X���A����̏�����ݒ�ł���@�\ (�l�b�g���[�N�̃��[�e�B���O�Ƃ͈Ⴄ�Ӗ��j
+            app.UseRouting();
+
+            // �F�؋@�\�̒ǉ�
+            app.UseAuthorization();
+
+            // �Z�b�V�����𗘗p
+            app.UseSession();
+
+            // �p�C�v���C����"�Ō�ɌĂяo�����"�G���h�|�C���g�̐ݒ�
+            app.UseEndpoints(endpoints =>
+            {
+                // MVC�R���g���[���𗘗p�������[�g�̐ݒ� (MVC�Ŏ�������Ȃ�MUST�Ȑݒ�j
+                // name: ���[�g�̖��O
+                // pattern���e���v���[�g
+                // - {controller=Home}: �R���g���[�����B"Home"�̓f�t�H���g�l
+                // - {action=iIndex}: �A�N�V�������B"Index"�̓f�t�H���g�l
+                // - {id?}: ID�l�B��L2�ƈقȂ�A�ȗ��\
+                //
+                // ��) �u/abc/xyz/123�v�ƃA�N�Z�X���ꂽ�ꍇ�́A�uabc�R���g���[����xyz�A�N�V������123�Ƃ���ID��t���ČĂяo���v�Ƃ�������
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseEndpoints(endpoint =>
+            {
+                // �������̃p�X�ɃA�N�Z�X����ƁA��2�����̏��������s����
+                endpoint.MapGet("/",
+                                async context => await context.Response.WriteAsync("Hello world"));
+            });
+        }
+    }
+}
