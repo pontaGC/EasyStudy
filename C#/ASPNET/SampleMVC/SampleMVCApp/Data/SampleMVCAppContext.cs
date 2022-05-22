@@ -14,6 +14,8 @@ namespace SampleMVCApp.Data
         {
         }
 
+        // DbSet: DbContextで実際にデータベースへアクセスするための機能を提供しているクラス
+
         public DbSet<SampleMVCApp.Models.Person> Person { get; set; }
     }
 }

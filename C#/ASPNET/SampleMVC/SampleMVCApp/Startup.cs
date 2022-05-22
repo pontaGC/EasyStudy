@@ -32,6 +32,9 @@ namespace SampleMVCApp
             services.AddSession(); // セッション(クライアントとホスト間の接続を維持する仕組み）を利用する
             services.AddControllersWithViews();
 
+            // Dbコンテキストを追加
+            // UseSqulServier: 接続文字列を基にSQLサーバに接続するためのオプション情報を管理するオブジェクトを生成（DbContextOptionsBuilderが生成される）
+            // 接続設定情報は「appsettings.json」に記述されている
             services.AddDbContext<SampleMVCAppContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SampleMVCAppContext")));
         }
