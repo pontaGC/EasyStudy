@@ -4,6 +4,19 @@
     ViewData["Title"] = "Other page";
 }
 
+@section Between
+{
+    <div class="container card" style="width: 30rem">
+        <div class="card-body">
+            <h5 class="card-title">※BETWEEN CONTENT</h5>
+            <p class="card-text">
+                これは、ヘッダ部分とページのコンテンツの間にある
+                Betweenセクションのコンテンツです。
+            </p>
+        </div>
+    </div>
+}
+
 <div>
     <h1 class="display-4 mb-4">Other page</h1>
     <p class="h4">@Model.Message</p>
@@ -41,7 +54,7 @@
         <div class="form-group">
             <label class="col-form-label h5">
                 @Html.DisplayName("Platforms")
-                @Html.ListBoxFor(model => model.Platforms, new MultiSelectList(Enum.GetValues(typeof(Platform))), new { @class = "form-control", size=5 })
+                @Html.ListBoxFor(model => model.Platforms, new MultiSelectList(Enum.GetValues(typeof(Platform))), new { @class = "form-control", size = 5 })
             </label>
         </div>
 
