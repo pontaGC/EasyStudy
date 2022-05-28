@@ -15,6 +15,7 @@
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
+                @*検証結果の表示。ちなみに入力フォームは検証結果に戻ると再度フォームに戻るようになっている*@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,3 +39,11 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@*追記*@
+@section Scripts
+{
+    @*RenderPartialAsyncで「_ValidationScriptsPartial」という部分ビューを読み込んでいる
+    「_ValidationScriptsPartial」内では、jQueryの検証関係のライブラリを読み込んでいる。
+    これにより、フロントエンド側の値の検証が行える*@
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

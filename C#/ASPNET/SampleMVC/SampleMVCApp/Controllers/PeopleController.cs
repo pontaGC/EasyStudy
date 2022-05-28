@@ -22,6 +22,7 @@ namespace SampleMVCApp.Controllers
         // GET: People
         public async Task<IActionResult> Index()
         {
+            // 引数はテンプレートファイルの@modelに渡るインスタンス
             return View(await _context.Person.ToListAsync());
         }
 
@@ -53,14 +54,16 @@ namespace SampleMVCApp.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] // XSRF(クロスサイトリクエストフォージェリ)対策
         public async Task<IActionResult> Create([Bind("PersonId,Name,Mail,Age")] Person person)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(person);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // 検証結果がOKの場合の処理
+
+                _context.Add(person); // レコードの保存
+                await _context.SaveChangesAsync(); // 変更を反映する（データベーステーブルに保存する）
+                return RedirectToAction(nameof(Index)); // 保存したら、トップページ(Indexアクション)へリダイレクト
             }
             return View(person);
         }
