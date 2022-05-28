@@ -35,8 +35,11 @@ namespace SampleMVCApp
             // Dbコンテキストを追加
             // UseSqulServier: 接続文字列を基にSQLサーバに接続するためのオプション情報を管理するオブジェクトを生成（DbContextOptionsBuilderが生成される）
             // 接続設定情報は「appsettings.json」に記述されている
+
+            //var serverVersion = new MySqlServerVersion(new Version(8, 0, 27)); // Use for Pomelo Db
             services.AddDbContext<SampleMVCAppContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SampleMVCAppContext")));
+                        options.UseSqlServer(Configuration.GetConnectionString(nameof(SampleMVCAppContext))));
+                       //options.UseMySql(Configuration.GetConnectionString(nameof(SampleMVCAppContext)), serverVersion));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
