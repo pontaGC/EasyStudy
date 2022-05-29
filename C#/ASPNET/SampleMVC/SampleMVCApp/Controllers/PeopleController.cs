@@ -98,10 +98,13 @@ namespace SampleMVCApp.Controllers
 
             if (ModelState.IsValid)
             {
+                // 既存のレコードを更新するが、正しく更新できない場合がある
+                // そのため、例外処理が必要
+
                 try
                 {
-                    _context.Update(person);
-                    await _context.SaveChangesAsync();
+                    _context.Update(person); // 引数に渡したインスタンスを更新する
+                    await _context.SaveChangesAsync(); // Dbコンテキストの変更内容を反映する
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -138,7 +141,7 @@ namespace SampleMVCApp.Controllers
         }
 
         // POST: People/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete")] // メソッド名が"Delete"ではないため、Deleteアクションであることを指定
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
