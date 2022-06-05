@@ -2,10 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-TestBlog-0EA7CD27-0ADE-4056-A59C-E0D6A274C46F</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.16" />
   </ItemGroup>
 
 </Project>

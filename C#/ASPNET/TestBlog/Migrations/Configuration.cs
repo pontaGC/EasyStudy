@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true; // データの削除等を可能とする
         }
 
         protected override void Seed(TestBlog.Models.BlogContext context)
