@@ -1,0 +1,8 @@
+﻿<Application x:Class="ToolbarBuilder.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:root="clr-namespace:ToolbarBuilder">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

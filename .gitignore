@@ -32,3 +32,10 @@
 /C#/ASPNET/TestBlog/obj
 /C#/ASPNET/TestBlog/bin/Debug/net5.0
 /C#/ASPNET/TestBlog_old
+/C#/WPF/ToolbarBuilder/.vs/ToolbarBuilder/v16
+/C#/WPF/ToolbarBuilder/bin/Debug
+/C#/WPF/ToolbarBuilder/obj/Debug
+/C#/WPF/ToolbarBuilder/UserInterface/bin/Debug
+/C#/WPF/ToolbarBuilder/UserInterface/obj/Debug
+/C#/WPF/ToolbarBuilder/UserInterface.Core/bin/Debug
+/C#/WPF/ToolbarBuilder/UserInterface.Core/obj/Debug
