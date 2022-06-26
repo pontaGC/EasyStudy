@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Windows.Controls;
+
 namespace ToolbarBuilder.UserInterface.Core
 {
     public interface IToolbarBuilder
     {
-        void Build();
+        void Build(IEnumerable<ToolBar> toolBars);
     }
 }

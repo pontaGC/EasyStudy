@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface.Core", "UserI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{15614084-A30F-4202-AACE-DA73ABF71FDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{A56E92F8-1DD4-4068-B25E-A5F64CF06EE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{15614084-A30F-4202-AACE-DA73ABF71FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15614084-A30F-4202-AACE-DA73ABF71FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15614084-A30F-4202-AACE-DA73ABF71FDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A56E92F8-1DD4-4068-B25E-A5F64CF06EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A56E92F8-1DD4-4068-B25E-A5F64CF06EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A56E92F8-1DD4-4068-B25E-A5F64CF06EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A56E92F8-1DD4-4068-B25E-A5F64CF06EE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

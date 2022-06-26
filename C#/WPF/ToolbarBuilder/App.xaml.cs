@@ -7,6 +7,9 @@ using ToolbarBuilder.UserInterface.Core;
 
 namespace ToolbarBuilder
 {
+    // 本ツールの目的: クライアント・サーバ構造をもつ
+    // 結論: ToolBarはクライアントで生成して、サーバ側で注入する
+
     /// <summary>
     /// Interaction logic for <see cref="App"/>.xaml
     /// </summary>
@@ -24,15 +27,16 @@ namespace ToolbarBuilder
             var uiContainerRegistrar = new DependencyRegistrar();
             uiContainerRegistrar.Register(container);
 
-            var serviceProvider = container.BuildServiceProvider();
+            container.AddSingleton<IMainWindowInitializer, MainWindowInitializer>();
 
-            // Performs the module initialization
-            var uiInitializer = serviceProvider.GetService<IModuleInitializer>();
-            uiInitializer.Initialize();
+            var serviceProvider = container.BuildServiceProvider();
 
             // Shows a main window
             var windowFactory = serviceProvider.GetService<IWindowFactory>();
             var mainWindow = windowFactory.CreateMainWindow();
+
+            var mainWindowInitializer = serviceProvider.GetService<IMainWindowInitializer>();
+            mainWindowInitializer.Initialize();
 
             mainWindow.ShowDialog();
         }

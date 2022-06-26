@@ -14,10 +14,9 @@ namespace ToolbarBuilder.UserInterface
         /// </summary>
         /// <param name="container">The container to register.</param>
         public void Register(IServiceCollection container) 
-        {
-            container.AddTransient<IModuleInitializer, ModuleInitializer>();
-
+        { 
             container.AddSingleton<IWindowFactory, WindowFactory>();
+            container.AddSingleton<IToolbarBuilder, Toolbar.ToolbarBuilder>();
         }
     }
 }

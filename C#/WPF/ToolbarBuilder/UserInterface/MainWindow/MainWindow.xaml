@@ -23,8 +23,8 @@
         </Menu>
 
         <!--Tool bar-->
-        <ToolBarTray>
-            
+        <ToolBarTray x:Name="ToolBarTray">
+
         </ToolBarTray>
         
         <!--Body-->

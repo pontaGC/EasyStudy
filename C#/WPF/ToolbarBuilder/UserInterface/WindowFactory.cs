@@ -10,6 +10,13 @@ namespace ToolbarBuilder.UserInterface
     /// </summary>
     internal sealed class WindowFactory : IWindowFactory
     {
+        private readonly IToolbarBuilder toolbarBuilder;
+
+        public WindowFactory(IToolbarBuilder toolbarBuilder)
+        {
+            this.toolbarBuilder = toolbarBuilder;
+        }
+
         /// <summary>
         /// Creates a main window.
         /// </summary>

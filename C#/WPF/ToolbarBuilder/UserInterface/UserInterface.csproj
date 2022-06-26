@@ -75,17 +75,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\WindowCloseBehavior.cs" />
+    <Compile Include="Common\RankSortableViewModelBase.cs" />
     <Compile Include="Common\TextConstants.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow\MainWindowViewModel.cs" />
-    <Compile Include="ModuleInitializer.cs" />
+    <Compile Include="Toolbar\ToolbarBuilder.cs" />
+    <Compile Include="Toolbar\ViewModels\ToolBarCheckBoxViewModel.cs" />
+    <Compile Include="Toolbar\ViewModels\ToolBarComboBoxViewModel.cs" />
+    <Compile Include="Toolbar\ViewModels\ToolBarItemViewModelBase.cs" />
+    <Compile Include="Toolbar\ViewModels\ToolBarSeparatorViewModel.cs" />
     <Compile Include="WindowFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{a56e92f8-1dd4-4068-b25e-a5f64cf06ee7}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UserInterface.Core\UserInterface.Core.csproj">
       <Project>{85fed403-2540-4ef1-a9be-e525e10be34e}</Project>
       <Name>UserInterface.Core</Name>
@@ -101,8 +110,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Toolbar\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,9 +1,9 @@
 ﻿namespace ToolbarBuilder.UserInterface.Core
 {
     /// <summary>
-    /// The initializer of the <c>UserInterface</c> module.
+    /// The initializer of the main window.
     /// </summary>
-    public interface IModuleInitializer
+    public interface IMainWindowInitializer
     {
         /// <summary>
         /// Initializes the <c>UserInterface</c> module.
