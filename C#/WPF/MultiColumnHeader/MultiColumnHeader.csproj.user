@@ -7,7 +7,15 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="MultiColumnHeaderDataGrids\MultiColumnHeaderDataGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindowView\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MultiColumnHeaderDataGrids\MultiColumnHeaderDataGrid.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

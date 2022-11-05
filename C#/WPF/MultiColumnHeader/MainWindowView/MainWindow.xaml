@@ -5,10 +5,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultiColumnHeader.MainWindowView"
+        xmlns:multiColumn="clr-namespace:MultiColumnHeader.MultiColumnDataGrids"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel, IsDesignTimeCreatable=False}">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <multiColumn:MultiColumnHeaderDataGrid 
+            Grid.Row="0"
+            DataContext="{Binding MultiColumnHeader, Mode=OneWay}" />
     </Grid>
 </Window>

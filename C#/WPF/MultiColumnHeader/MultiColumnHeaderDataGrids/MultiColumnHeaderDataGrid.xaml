@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="MultiColumnHeader.MultiColumnDataGrids.MultiColumnHeaderDataGrid"
+             x:ClassModifier="internal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MultiColumnHeader.MultiColumnDataGrids"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance local:MultiColumnHeaderDataGridViewModel, IsDesignTimeCreatable=False}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Content="Test" />
+
+        <DataGrid Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  VerticalScrollBarVisibility="Visible"
+                  ItemsSource="{Binding Users, Mode=OneTime}">
+            
+            <DataGrid.Columns>
+                <!--User ID-->
+                <DataGridTextColumn x:Name="UserIdColumn"
+                                    Header="ID"
+                                    Binding="{Binding Id, Mode=OneWay}"
+                                    IsReadOnly="True" />
+                
+                <!--User Name-->
+                <DataGridTextColumn x:Name="UserNameColumn"
+                                    Header="Name"
+                                    Binding="{Binding Name, Mode=OneWay}"
+                                    IsReadOnly="True" />
+
+                <!--User Rank-->
+                <DataGridTextColumn x:Name="UserRankColumn"
+                                    Header="Rank"
+                                    Binding="{Binding Rank, Mode=OneWay}"
+                                    IsReadOnly="True" />
+
+                <!--User Nickname-->
+                <DataGridTextColumn x:Name="UserNicknameColumn"
+                                    Header="Nickname"
+                                    Binding="{Binding Nickname, Mode=OneWay}"
+                                    IsReadOnly="True" />
+
+                <!--User Nationality-->
+                <DataGridTextColumn x:Name="UserNationalityColumn"
+                                    Header="Nationality"
+                                    Binding="{Binding Nationality, Mode=OneWay}"
+                                    IsReadOnly="True" />
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</UserControl>
